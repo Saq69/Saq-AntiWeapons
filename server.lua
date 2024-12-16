@@ -5,8 +5,8 @@ AddEventHandler("Saq:CheckWeapons", function(newWeapons)
 
     if xPlayer then
         for weaponName, _ in pairs(newWeapons) do
-            xPlayer.hasWeapon(weaponName, function(hasWeapon)
-                if not hasWeapon then
+            xPlayer.hasWeapon(weaponName, function(hasWeapon) -- checks if have the weapon
+                if not hasWeapon then -- if he does not have one of them he will get kicked
                     xPlayer.kick("Stop Hacking Little Bitch 💦")
                     return  
                 end
