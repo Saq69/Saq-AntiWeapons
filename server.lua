@@ -7,13 +7,10 @@ AddEventHandler("Saq:CheckWeapons", function(newWeapons)
         for weaponName, _ in pairs(newWeapons) do
             xPlayer.hasWeapon(weaponName, function(hasWeapon)
                 if not hasWeapon then
-                    print(playerId .. " does NOT have the weapon: " .. weaponName .. " - Kicking for hacking.")
+                    xPlayer.kick("Stop Hacking Little Bitch 💦")
                     return  
-                else
                 end
             end)
         end
-    else
-        print("Player not found with ID: " .. playerId)
     end
 end)
