@@ -18,11 +18,9 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(60000) 
-
+        local playerPed = PlayerPedId()
         for k, v in ipairs(weapons) do
             local weaponHash = GetHashKey(v.name)
-            
             if HasPedGotWeapon(playerPed, weaponHash, false) then
                 if not playerWeapons[weaponHash] then
                     onWeaponGive(playerPed, weaponHash,v.name)
@@ -35,15 +33,17 @@ Citizen.CreateThread(function()
                 end
             end
         end
+        Citizen.Wait(60000) 
     end
 end)
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(65000) 
-        if #NewWeapons > 0 then
+        Citizen.Wait(5000) 
+        if next(NewWeapons) then
             TriggerServerEvent("Saq:CheckWeapons",NewWeapons)
             NewWeapons = {}
         end
+        Citizen.Wait(60000) 
     end
 end)

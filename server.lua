@@ -5,12 +5,32 @@ AddEventHandler("Saq:CheckWeapons", function(newWeapons)
 
     if xPlayer then
         for weaponName, _ in pairs(newWeapons) do
-            xPlayer.hasWeapon(weaponName, function(hasWeapon) -- checks if have the weapon
-                if not hasWeapon then -- if he does not have one of them he will get kicked
-                    xPlayer.kick("Stop Hacking Little Bitch 💦")
-                    return  
-                end
-            end)
+            if not xPlayer.hasWeapon(weaponName) then
+                xPlayer.kick("Get lost, you pathetic little hacking rat 💦💩")
+                local discordEmbed = {
+                    {
+                        ["title"] = "رسبنة اسلحة",
+                        ["type"] = "rich",
+                        ["color"] = 16766720,
+                        ["fields"] = {
+                            { ["name"] = "اسم اللاعب", ["value"] = xPlayer.getName(), ["inline"] = true },
+                            { ["name"] = "id", ["value"] = xPlayer.identifier, ["inline"] = true }
+                        }
+                    }
+                }
+            
+                local webhookURL = ""
+                local data = json.encode({ embeds = discordEmbed })
+            
+                PerformHttpRequest(webhookURL, function(statusCode)
+                    if statusCode == 204 then
+                        print("تم إرسال رسالة ديسكورد بنجاح!")
+                    else
+                        print("فشل في إرسال رسالة ديسكورد. الرمز النقدي: " .. statusCode)
+                    end
+                end, "POST", data, headers)
+                return  
+            end
         end
     end
 end)
