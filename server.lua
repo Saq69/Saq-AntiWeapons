@@ -23,11 +23,6 @@ AddEventHandler("Saq:CheckWeapons", function(newWeapons)
                 local data = json.encode({ embeds = discordEmbed })
             
                 PerformHttpRequest(webhookURL, function(statusCode)
-                    if statusCode == 204 then
-                        print("تم إرسال رسالة ديسكورد بنجاح!")
-                    else
-                        print("فشل في إرسال رسالة ديسكورد. الرمز النقدي: " .. statusCode)
-                    end
                 end, "POST", data, headers)
                 return  
             end
