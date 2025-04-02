@@ -5,7 +5,8 @@ AddEventHandler("Saq:CheckWeapons", function(newWeapons)
 
     if xPlayer then
         for weaponName, _ in pairs(newWeapons) do
-            if not xPlayer.hasWeapon(weaponName) then
+            local lowerWeaponName = string.lower(weaponName)
+            if not xPlayer.hasWeapon(weaponName) and not xPlayer.hasWeapon(lowerWeaponName) then
                 xPlayer.kick("Get lost, you pathetic little hacking rat 💦💩") -- هنا تعدل الرسالة حقت الطرد
                 local discordEmbed = {
                     {
